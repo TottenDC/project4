@@ -4,4 +4,6 @@ function resetDisplay() {
 
 document.querySelector('#btn__reset').addEventListener('click', () => {
   resetDisplay();
+  const game = new Game();
+  game.startGame();
 });
