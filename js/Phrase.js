@@ -36,10 +36,11 @@ class Phrase {
   showMatchedLetter(event) {
     const phraseList = document.querySelector('#phrase').firstElementChild.children;
     let guess = event.target.innerText;
-    phraseList.forEach((li) => {
-      if (guess === li.innerText) {
-        li.className = 'show';
+    for (let i=0; i<phraseList.length; i++) {
+      let check = phraseList[i].innerText;
+      if (guess === check) {
+        phraseList[i].className = 'show';
       }
-    });
+    }
   }
 }
