@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this.missed = 0;
     this.phrases = ['phrase', 'another phrase', 'last phrase'];
+    this.phrase = null;
   }
 
   getRandomPhrase() {
@@ -9,8 +10,13 @@ class Game {
     return this.phrases[randomNum];
   }
 
-  handleInteraction() {
-
+  handleInteraction(event) {
+    if (this.phrase.checkLetter(event)) {
+      this.phrase.showMatchedLetter(event);
+      this.checkForWin();
+    } else {
+      this.removeLife();
+    }
   }
 
   removeLife() {
@@ -26,7 +32,7 @@ class Game {
   }
 
   startGame() {
-    const phraseForGame = new Phrase(this.getRandomPhrase());
-    phraseForGame.addPhraseToDisplay();
+    this.phrase = new Phrase(this.getRandomPhrase());
+    this.phrase.addPhraseToDisplay();
   }
 }

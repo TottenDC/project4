@@ -27,10 +27,9 @@ class Phrase {
     for (let letter of this.phrase) {
       if (guess === letter) {
         return true;
-      } else {
-        return false;
       }
     }
+    return false;
   }
 
   showMatchedLetter(event) {
