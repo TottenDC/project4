@@ -1,13 +1,15 @@
 class Phrase {
   constructor (phrase) {
-    this.phrase = phrase;
+    this.phrase = this.generatePhraseArray(phrase);
+  }
+
+  generatePhraseArray(phrase) {
+    return phrase.split(/(\w)/).filter(character => character !== '');
   }
 
   addPhraseToDisplay() {
-    const phraseSplit = this.phrase.split(/(\w)/);
-    const phraseLetters = phraseSplit.filter(character = character !== '');
 
-    for (letter of phraseLetters) {
+    for (let letter of this.phrase) {
       const playSpace = document.querySelector('#phrase').firstElementChild;
       let li = document.createElement('li');
       li.textContent = letter;
@@ -20,11 +22,24 @@ class Phrase {
     }
   }
 
-  checkLetter() {
-
+  checkLetter(event) {
+    let guess = event.target.innerText;
+    for (let letter of this.phrase) {
+      if (guess === letter) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 
-  showMatchedLetter() {
-
+  showMatchedLetter(event) {
+    const phraseList = document.querySelector('#phrase').firstElementChild.children;
+    let guess = event.target.innerText;
+    phraseList.forEach((li) => {
+      if (guess === li.innerText) {
+        li.className = 'show';
+      }
+    });
   }
 }
