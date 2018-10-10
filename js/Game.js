@@ -71,7 +71,12 @@ class Game {
   }
 
   gameOver(state) {
-    console.log(state);
+    document.querySelector('#overlay').style.display='flex';
+    if (state === 'win') {
+      document.querySelector('#game-over-message').innerText = 'Congratulations! You won!';
+    } else {
+      document.querySelector('#game-over-message').innerText = 'Sorry! Try again!';
+    }
   }
 
   startGame() {
