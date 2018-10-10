@@ -54,11 +54,24 @@ class Game {
   }
 
   checkForWin() {
-
+    const phraseList = document.querySelector('#phrase').firstElementChild.children;
+    let correctGuesses = 0;
+    for (let i=0; i<phraseList.length; i++) {
+      if (phraseList[i].className === 'show') {
+        correctGuesses += 0;
+      } else if (phraseList[i].className === 'hide space') {
+        correctGuesses += 0;
+      } else {
+        correctGuesses -= 1;
+      }
+    }
+    if (correctGuesses === 0) {
+      this.gameOver('win');
+    }
   }
 
-  gameOver() {
-
+  gameOver(state) {
+    console.log(state);
   }
 
   startGame() {
