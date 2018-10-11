@@ -29,5 +29,7 @@ document.querySelector('#btn__reset').addEventListener('click', () => {
 * Sets event handler on all keyboard buttons to launch game logic
 */
 document.querySelector('#qwerty').addEventListener('click', (event) => {
-  markButton(event);
+  if (event.target.tagName === 'BUTTON') {
+    markButton(event);
+  }
 });
