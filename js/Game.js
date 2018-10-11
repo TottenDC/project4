@@ -42,9 +42,11 @@ class Game {
 
   handleInteraction(event) {
     if (this.phrase.checkLetter(event)) {
+      event.target.className = 'chosen';
       this.phrase.showMatchedLetter(event);
       this.checkForWin();
     } else {
+      event.target.className = 'wrong';
       this.removeLife();
     }
   }
