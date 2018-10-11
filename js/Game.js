@@ -81,9 +81,11 @@ class Game {
   gameOver(state) {
     document.querySelector('#overlay').style.display='flex';
     if (state === 'win') {
-      document.querySelector('#game-over-message').innerText = 'Congratulations! You won!';
+      document.querySelector('#game-over-message').innerText = 'Congratulations! You won! Refresh the page to play again.';
+      document.querySelector('#btn__reset').style.display = 'none';
     } else {
-      document.querySelector('#game-over-message').innerText = 'Sorry! Try again!';
+      document.querySelector('#game-over-message').innerText = 'Sorry! Refresh the page to try again.';
+      document.querySelector('#btn__reset').style.display = 'none';
     }
   }
 
