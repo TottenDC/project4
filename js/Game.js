@@ -4,12 +4,16 @@ class Game {
     this.phrases = [
       ['final fantasy', 'the last of us', 'super mario galaxy'],
       ['where the red fern grows', 'jurassic park', 'confederacy of dunces'],
-      ['not now ma', 'can you believe that backstabbing slut', 'grab that dough'],
+      ['not now ma', 'thank you for being a friend', 'grab that dough'],
       ['knit one purl one', 'whittle soap', 'the looming loom in the room']];
     this.phrase = null;
     this.clue = null;
   }
 
+  /**
+  * 1) Generates a random phrase from the game.phrases array of arrays
+  * 2) Based on the first array selected, updates the game.clue property and selects a single phrase from that array
+  */
   getRandomPhrase() {
     const index1 = Math.floor(Math.random() * this.phrases.length);
     function index2(index1) {
@@ -30,6 +34,10 @@ class Game {
     }
   }
 
+  /**
+  * 1) Checks to see if there is a current clue displayed and deletes the element from the document
+  * 2) Creates a new header and fills in the current game.clue property associated with the selected phrase
+  */
   addClueToDisplay() {
     const header = document.querySelector('#banner');
     if (header.firstElementChild.nextElementSibling) {
@@ -40,6 +48,10 @@ class Game {
     header.appendChild(clueHeader);
   }
 
+  /**
+  * Checks for correct matching between the letter and phrase - runs different scripts whether right or wrong
+  * @param {Object} event The event object triggered when the keyboard button is clicked
+  */
   handleInteraction(event) {
     if (this.phrase.checkLetter(event)) {
       event.target.className = 'chosen';
@@ -51,6 +63,10 @@ class Game {
     }
   }
 
+  /**
+  * 1) Checks for game over status based on number of misses
+  * 2) Changes the hearts at the bottom to empty hearts based on how many incorrect guesses the player has
+  */
   removeLife() {
     const hearts = document.querySelectorAll('.tries');
     this.missed += 1;
@@ -63,6 +79,9 @@ class Game {
     }
   }
 
+  /**
+  * Runs through the phrase list items on display and updates a counting variable to decide if all elements have been guessed
+  */
   checkForWin() {
     const phraseList = document.querySelector('#phrase').firstElementChild.children;
     let correctGuesses = 0;
@@ -80,6 +99,10 @@ class Game {
     }
   }
 
+  /**
+  * Returns the start screen display with appnded message whether the player won or lost. Does not display the start game button.
+  * @param {String} state String dictating whether the game over is from winning or losing.
+  */
   gameOver(state) {
     document.querySelector('#overlay').style.display='flex';
     if (state === 'win') {
@@ -91,6 +114,9 @@ class Game {
     }
   }
 
+  /**
+  * Generates a new phrase object to start the game, updates the clue, and puts the phrase into the document.
+  */
   startGame() {
     this.phrase = new Phrase(this.getRandomPhrase());
     this.addClueToDisplay();
