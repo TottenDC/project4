@@ -50,7 +50,15 @@ class Game {
   }
 
   removeLife() {
-
+    const hearts = document.querySelectorAll('.tries');
+    this.missed += 1;
+    if (this.missed === 5) {
+      this.gameOver('lose');
+    } else {
+      for (let i=0; i < this.missed; i++) {
+        hearts[i].firstElementChild.setAttribute('src', 'images/lostHeart.png');
+      }
+    }
   }
 
   checkForWin() {
